@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In</title>
+    <title>Sign In - Devskill</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> <!-- Font Awesome CDN -->
     <style>
         body {
             display: flex;
@@ -23,11 +24,12 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 10px;
         }
 
         .login-container .image-container {
             height: 150px;
-            background: url('https://via.placeholder.com/400x150') no-repeat center center;
+            background: url('{{ asset('formimage.jpg') }}') no-repeat center center;
             background-size: cover;
         }
 
@@ -47,7 +49,7 @@
 
         .social-icons a {
             color: #666;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             margin: 0 10px;
             text-decoration: none;
         }
@@ -79,8 +81,14 @@
     <div class="login-container">
         <div class="image-container"></div>
         <div class="p-4">
-            <h4 class="text-center">Sign In</h4>
-            
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="text-left">Sign In</h4>
+                <div class="social-icons">
+                    <a href="#" class="facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+
             <!-- Display success or error message -->
             @if (session('success'))
                 <div class="alert alert-success">

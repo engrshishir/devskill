@@ -15,12 +15,8 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Protected Routes (Authenticated Users Only)
 Route::middleware('auth')->group(function () {
-    // Route to store new users (admin only)
     Route::post('admin/store-user', [AuthController::class, 'storeUser'])->name('admin.storeUser');
-
-    // Change /home to GET for dashboard
     Route::get('/home', [AuthController::class, 'Dashboard'])->name('home');
 });
 

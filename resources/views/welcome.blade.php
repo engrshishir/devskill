@@ -26,7 +26,7 @@
 
         .login-container .image-container {
             height: 150px;
-            background: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Ffree-photos-vectors%2Fadmin-login&psig=AOvVaw2ry10Hv1T0es1qkSRZebzr&ust=1733325117647000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCOi37bHxi4oDFQAAAAAdAAAAABAE') no-repeat center center;
+            background: url('https://via.placeholder.com/400x150') no-repeat center center;
             background-size: cover;
         }
 

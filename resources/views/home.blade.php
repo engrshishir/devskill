@@ -6,71 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Success - Devskill</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #f8f9fa;
-        }
-
-        .success-container {
-            width: 100%;
-            max-width: 500px;
-            background: #fff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .success-header {
-            background-color: #28a745;
-            color: #fff;
-            text-align: center;
-            padding: 20px 0;
-            font-size: 1.5rem;
-        }
-
-        .success-message {
-            padding: 40px;
-            text-align: center;
-        }
-
-        .success-message h4 {
-            color: #28a745;
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-
-        .success-message p {
-            font-size: 1.1rem;
-            color: #333;
-        }
-
-        .btn-primary {
-            background-color: #28a745;
-            border-color: #28a745;
-            font-size: 1rem;
-            padding: 10px 20px;
-            border-radius: 20px;
-        }
-
-        .btn-primary:hover {
-            background-color: #218838;
-            border-color: #218838;
-        }
-
-        .back-to-home {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        .back-to-home:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <link href="{{ asset('asset/css/home.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -78,17 +14,54 @@
         <div class="success-header">
             Devskill
         </div>
+        @if (session('success'))
+            <div class=" mt-4 alert alert-success">
+                {{ session('success') }}
+            </div>
+        @elseif(session('error'))
+            <div class=" mt-4 alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
         <div class="success-message">
             <h4>Success!</h4>
             <p>Your login was successful. You are now ready to access your dashboard and continue your learning journey.
             </p>
-            <div class="text-center mt-3">
-                <form method="POST" action="{{ route('logout') }}">
+            <form method="POST" action="{{ route('logout') }}" class="logout-form">
+                @csrf
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+
+        @if (Auth::user()->is_admin)
+            <div class="admin-form">
+                <h5 class="text-center mb-4">Add New User</h5>
+                <form method="POST" action="{{ route('admin.storeUser') }}">
                     @csrf
-                    <button type="submit" class="btn btn-danger">Logout</button>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" name="name" id="name"
+                            placeholder="Enter full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" name="email" id="email"
+                            placeholder="Enter email address" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" name="password" id="password"
+                            placeholder="Enter password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password_confirmation">Confirm Password</label>
+                        <input type="password" class="form-control" name="password_confirmation"
+                            id="password_confirmation" placeholder="Confirm password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create User</button>
                 </form>
             </div>
-        </div>
+        @endif
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

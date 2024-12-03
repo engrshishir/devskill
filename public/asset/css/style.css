@@ -1,0 +1,65 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f8f9fa;
+}
+
+a{
+    text-decoration: none;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+}
+
+
+.form-control {
+    border-radius: 20px;
+}
+
+.btn-signin {
+    border-radius: 20px;
+    background-color: #28a745;
+    color: #fff;
+}
+
+.btn-signin:hover {
+    background-color: #218838;
+}
+
+.social-icons a {
+    color: #666;
+    font-size: 1.5rem;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.social-icons a:hover {
+    color: #0056b3;
+}
+
+.form-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.form-footer a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}

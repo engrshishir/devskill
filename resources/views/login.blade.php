@@ -6,73 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In - Devskill</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> <!-- Font Awesome CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+      <link href="{{ asset('asset/css/style.css') }}" rel="stylesheet">
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #f8f9fa;
-        }
-
-        .login-container {
-            width: 100%;
-            max-width: 400px;
-            background: #fff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 10px;
-        }
-
         .login-container .image-container {
             height: 150px;
-            background: url('{{ asset('formimage.jpg') }}') no-repeat center center;
+            background: url("{{ asset('formimage.jpg') }}") no-repeat center center;
             background-size: cover;
-        }
-
-        .form-control {
-            border-radius: 20px;
-        }
-
-        .btn-signin {
-            border-radius: 20px;
-            background-color: #28a745;
-            color: #fff;
-        }
-
-        .btn-signin:hover {
-            background-color: #218838;
-        }
-
-        .social-icons a {
-            color: #666;
-            font-size: 1.5rem;
-            margin: 0 10px;
-            text-decoration: none;
-        }
-
-        .social-icons a:hover {
-            color: #0056b3;
-        }
-
-        .form-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .form-footer a {
-            text-decoration: none;
-            color: #007bff;
-        }
-
-        .form-footer a:hover {
-            text-decoration: underline;
         }
     </style>
 </head>
@@ -89,7 +29,6 @@
                 </div>
             </div>
 
-            <!-- Display success or error message -->
             @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
@@ -103,7 +42,8 @@
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="mb-3">
-                    <input type="text" class="form-control" name="email" placeholder="Email" value="{{ old('email') }}" required>
+                    <input type="text" class="form-control" name="email" placeholder="Email"
+                        value="{{ old('email') }}" required>
                 </div>
                 <div class="mb-3">
                     <input type="password" class="form-control" name="password" placeholder="Password" required>

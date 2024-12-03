@@ -4,7 +4,7 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
 
 Route::get('/login', function () {
@@ -12,8 +12,15 @@ Route::get('/login', function () {
 })->name('login');
 
 Route::post('/login', [AuthController::class, 'login']);
+
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/home', function () {
-    return view('home');
-})->name('home')->middleware('auth');
+// Protected Routes (Authenticated Users Only)
+Route::middleware('auth')->group(function () {
+    // Route to store new users (admin only)
+    Route::post('admin/store-user', [AuthController::class, 'storeUser'])->name('admin.storeUser');
+
+    // Change /home to GET for dashboard
+    Route::get('/home', [AuthController::class, 'Dashboard'])->name('home');
+});
+

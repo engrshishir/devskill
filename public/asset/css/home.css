@@ -1,0 +1,91 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+
+.success-container {
+    width: 100%;
+    max-width: 600px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.success-header {
+    background-color: #28a745;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px 8px 0 0;
+    font-size: 1.75rem;
+    font-weight: bold;
+}
+
+.success-message {
+    padding: 20px 40px;
+    text-align: center;
+}
+
+.success-message h4 {
+    color: #28a745;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.success-message p {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.logout-form {
+    display: inline-block;
+}
+
+.logout-form button {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border-radius: 8px;
+    color: #fff;
+}
+
+.logout-form button:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+.admin-form {
+    margin-top: 30px;
+}
+
+.admin-form .form-group {
+    margin-bottom: 15px;
+}
+
+.admin-form label {
+    font-weight: bold;
+}
+
+.admin-form button {
+    width: 100%;
+    background-color: #28a745;
+    border-color: #28a745;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 8px;
+    color: #fff;
+}
+
+.admin-form button:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}

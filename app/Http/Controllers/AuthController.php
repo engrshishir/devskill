@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    public function Dashboard(Request $request){
+        return view('home');
+    }
+
     public function login(Request $request)
     {
         if (Auth::check()) {
@@ -26,15 +31,30 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        // Log the user out
         Auth::logout();
-
-        // Invalidate the session
         $request->session()->invalidate();
-
-        // Regenerate the session token
         $request->session()->regenerateToken();
+        return redirect('/login');
+    }
 
-        return redirect('/login'); // Redirect to login page or home
+    public function storeUser(Request $request)
+    {
+        if (Auth::check() && !Auth::user()->is_admin) {
+            return redirect()->route('home')->with('error', 'You must be an admin to access this page.');
+        } 
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'is_admin' => false,
+        ]);
+
+        return redirect()->route('home')->with('success', 'User created successfully!');
     }
 }

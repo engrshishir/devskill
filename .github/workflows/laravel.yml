@@ -26,12 +26,16 @@ jobs:
     - name: Start MySQL Service
       run: sudo service mysql start
 
+    - name: Reset MySQL Root Password
+      run: |
+        sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'root_password'; FLUSH PRIVILEGES;"
+
     - name: Set up MySQL Database
       run: |
-        sudo mysql -u root -e "CREATE DATABASE testing;"
-        sudo mysql -u root -e "CREATE USER 'test_user'@'localhost' IDENTIFIED BY 'test_password';"
-        sudo mysql -u root -e "GRANT ALL PRIVILEGES ON testing.* TO 'test_user'@'localhost';"
-        sudo mysql -u root -e "FLUSH PRIVILEGES;"
+        sudo mysql -u root -p'root_password' -e "CREATE DATABASE testing;"
+        sudo mysql -u root -p'root_password' -e "CREATE USER 'test_user'@'localhost' IDENTIFIED BY 'test_password';"
+        sudo mysql -u root -p'root_password' -e "GRANT ALL PRIVILEGES ON testing.* TO 'test_user'@'localhost';"
+        sudo mysql -u root -p'root_password' -e "FLUSH PRIVILEGES;"
 
     - name: Create .env File
       run: cp .env.example .env

@@ -26,9 +26,13 @@ jobs:
     - name: Start MySQL Service
       run: sudo service mysql start
 
-    - name: Reset MySQL Root Password
+    - name: Reset MySQL Root Password (Bypass Authentication)
       run: |
-        sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'root_password'; FLUSH PRIVILEGES;"
+        sudo service mysql stop
+        sudo mysqld_safe --skip-grant-tables &
+        sleep 5
+        mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'root_password'; FLUSH PRIVILEGES;"
+        sudo service mysql restart
 
     - name: Set up MySQL Database
       run: |
@@ -39,6 +43,15 @@ jobs:
 
     - name: Create .env File
       run: cp .env.example .env
+
+    - name: Configure .env File
+      run: |
+        echo "DB_CONNECTION=mysql" >> .env
+        echo "DB_HOST=127.0.0.1" >> .env
+        echo "DB_PORT=3306" >> .env
+        echo "DB_DATABASE=testing" >> .env
+        echo "DB_USERNAME=test_user" >> .env
+        echo "DB_PASSWORD=test_password" >> .env
 
     - name: Install Composer Dependencies
       run: composer install --no-ansi --no-interaction --no-progress --prefer-dist

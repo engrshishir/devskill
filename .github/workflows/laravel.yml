@@ -16,9 +16,13 @@ jobs:
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.2' # Update to a compatible version
+        php-version: '8.2'
         extensions: mbstring, pdo, bcmath, xml
         coverage: none
+
+    - name: Create .env File
+      run: |
+        cp .env.example .env
 
     - name: Install Composer Dependencies
       run: composer install --no-ansi --no-interaction --no-progress --prefer-dist

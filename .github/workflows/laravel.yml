@@ -28,11 +28,10 @@ jobs:
 
     - name: Reset MySQL Root Password
       run: |
-        sudo mysql -e "ALTER USER 'root' IDENTIFIED BY ''; FLUSH PRIVILEGES;"
+        sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'root_password'; FLUSH PRIVILEGES;"
 
     - name: Set up MySQL Database
       run: |
-        sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'root_password'; FLUSH PRIVILEGES;"
         sudo mysql -u root -p'root_password' -e "CREATE DATABASE testing;"
         sudo mysql -u root -p'root_password' -e "CREATE USER 'test_user'@'localhost' IDENTIFIED BY 'test_password';"
         sudo mysql -u root -p'root_password' -e "GRANT ALL PRIVILEGES ON testing.* TO 'test_user'@'localhost';"
